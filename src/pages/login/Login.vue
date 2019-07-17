@@ -29,8 +29,8 @@ export default {
     login () {
       const username = this.username;
       const password = this.password;
-      axios
-        .post(login, {
+      this.$axios
+        .post(loginUrl, {
           username,
           password
         })
@@ -41,7 +41,8 @@ export default {
 
     handleLoginResponse (res) {
       const data = res.data;
-      if (data && data.success === 'true') {
+      console.log(data);
+      if (data && data.success === true) {
         this.$router.replace('/');
         return Promise.resolve(true);
       } else {

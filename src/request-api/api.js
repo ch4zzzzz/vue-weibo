@@ -3,8 +3,8 @@ const devUrl = '/';
 const baseUrl = process.env.NODE_ENV==='production'?proUrl:devUrl;
 
 const api = {
-  'login': 'login',
-  'tLogin': 'tLogin'
+  login: 'login',
+  tLogin: 'tLogin'
 }
 
 const keys = Object.keys(api);
@@ -13,4 +13,6 @@ for (let i=0, len=keys.length; i<len; i++) {
   api[key] = baseUrl + api[key];
 }
 
-export default api
+export default api;
+
+export const login = api.login;
