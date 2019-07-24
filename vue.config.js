@@ -1,3 +1,5 @@
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+
 module.exports = {
   publicPath: "/",
   assetsDir: "static",
@@ -9,4 +11,9 @@ module.exports = {
       title: '微博',
     }
   },
+  configureWebpack: {
+    plugins: [
+      new BundleAnalyzerPlugin()
+    ]
+  }
 }
