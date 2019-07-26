@@ -1,8 +1,6 @@
 <template>
   <div id="index">
-    <header id="index-header">
-      weibo
-    </header>
+    <WeiboHeader></WeiboHeader>
     <Post :content="content"></Post>
   </div>
 </template>
@@ -13,7 +11,8 @@ import {getPosts as getPostsUrl} from '@/request-api/api.js'
 export default {
   name: "index",
   components: {
-    Post: () => import('@/components/Post.vue')
+    Post: () => import('@/components/Post.vue'),
+    WeiboHeader: () => import('@/components/WeiboHeader.vue')
   },
   data () {
     return {
