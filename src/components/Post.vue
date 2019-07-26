@@ -70,7 +70,8 @@ export default {
   box-sizing: border-box;
   width: 100%;
   overflow: hidden;
-  margin-top: 1rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
   padding-left: 0.5rem;
   padding-right: 0.5rem;
 }
@@ -111,15 +112,15 @@ $header-height: 3rem;
 // }
 
 $post-text-line-height: 1.2rem;
-$post-text-rows: 6;
+$post-text-rows: 5;
 
 .content {
   line-height: $post-text-line-height;
   font-size: 1rem;
-  max-height: $post-text-rows * $post-text-line-height;
-  position: relative;
-  display: block;
   overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: $post-text-rows;
+  -webkit-box-orient: vertical; 
 }
 
 .footer {

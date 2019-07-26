@@ -1,5 +1,9 @@
 <template>
   <div id="index">
+    <header id="index-header">
+      weibo
+    </header>
+ 
   </div>
 </template>
 
@@ -13,7 +17,7 @@ export default {
   },
   data () {
     return {
-      
+
     }
   },
 
@@ -36,7 +40,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 
 </style>
 
