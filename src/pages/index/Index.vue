@@ -1,7 +1,7 @@
 <template>
   <div id="index">
     <WeiboHeader></WeiboHeader>
-    <Post :content="content"></Post>
+    <Post :content="content" time="1563984000000"></Post>
   </div>
 </template>
 

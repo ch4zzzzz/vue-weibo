@@ -1,5 +1,5 @@
 export function formatter (date, now=new Date()) {
-  const target = new Date(date);
+  const target = new Date(Number(date));
   const difference = now-target;
   const mins = difference / (1000 * 60);
   if (mins < 1) {

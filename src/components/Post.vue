@@ -49,8 +49,8 @@ export default {
       }}
     },
     time: {
-      type: Date,
-      default: () => new Date()
+      type: String,
+      default: () => new Date().getTime().toString()
     },
     content: {
       type: String,
