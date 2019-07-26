@@ -20,6 +20,9 @@ if (process.env.NODE_ENV !== 'production') {
   })()
 }
 
+// Icon
+import Icon from '@/assets/icon/Icon.vue'
+Vue.component('Icon', Icon);
 
 new Vue({
   router,

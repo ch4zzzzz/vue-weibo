@@ -19,9 +19,9 @@
     </section>
     <section class="photo"></section>
     <footer class="footer">
-      <div class="footer-button">点赞</div>
-      <div class="footer-button">评论</div>
-      <div class="footer-button">转发</div>
+      <div class="footer-button"><Icon name="like"></Icon>点赞</div>
+      <div class="footer-button"><Icon name="message"></Icon>评论</div>
+      <div class="footer-button"><Icon name="share"></Icon>转发</div>
       <!-- <mt-button class="footer-button" type="default">点赞</mt-button>
       <mt-button class="footer-button" type="default">评论</mt-button>
       <mt-button class="footer-button" type="default">转发</mt-button> -->
