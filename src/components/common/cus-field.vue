@@ -1,6 +1,8 @@
 <template>
   <span class="cus-field">
-    <Icon v-if="iconName" :name="iconName"/>
+    <div class="cus-field-icon">
+      <Icon v-if="iconName" :name="iconName"/>
+    </div>
     <input :type="type"
         :value="value"
         @input="emitInput"
@@ -49,7 +51,7 @@ $line-height: 100%;
   box-sizing: border-box;
   height: $line-height;
   line-height: $line-height;
-  border-radius: 5%;
+  border-radius: .25rem;
   background: rgba($color: #dcdcdc, $alpha: 0.8);
   display: flex;
 
@@ -58,6 +60,7 @@ $line-height: 100%;
     outline: none;
     background: transparent;
     line-height: $line-height;
+    vertical-align: middle;
     width: 100%;
   }
 }
