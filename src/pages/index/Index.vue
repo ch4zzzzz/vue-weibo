@@ -1,7 +1,7 @@
 <template>
   <div id="index">
     <WeiboHeader></WeiboHeader>
-    <Post :content="content" time="1563984000000"></Post>
+    <Post :content="content" time="1563984000000" :photos="photos"></Post>
   </div>
 </template>
 
@@ -16,7 +16,36 @@ export default {
   },
   data () {
     return {
-      content: "于是，我们就得到了SVG图标啦！如果你还需要其他图标，也按照这个步骤一个一个下载下来，很简单吧~ 然后把它们放在一个文件夹中，以备后用。"
+      content: "于是，我们就得到了SVG图标啦！如果你还需要其他图标，也按照这个步骤一个一个下载下来，很简单吧~ 然后把它们放在一个文件夹中，以备后用。",
+      photos: [
+        {
+          src: "https://wx2.sinaimg.cn/mw690/006h0M0Tgy1g3g5wkj83aj31ab1xg4qs.jpg"
+        },
+        {
+          src: "https://wx2.sinaimg.cn/mw690/006h0M0Tgy1g3g5wkj83aj31ab1xg4qs.jpg"
+        },
+        {
+          src: "https://wx2.sinaimg.cn/mw690/006h0M0Tgy1g3g5wkj83aj31ab1xg4qs.jpg"
+        },
+        {
+          src: "https://wx2.sinaimg.cn/mw690/006h0M0Tgy1g3g5wkj83aj31ab1xg4qs.jpg"
+        },
+        {
+          src: "https://wx2.sinaimg.cn/mw690/006h0M0Tgy1g3g5wkj83aj31ab1xg4qs.jpg"
+        },
+        {
+          src: "https://wx2.sinaimg.cn/mw690/006h0M0Tgy1g3g5wkj83aj31ab1xg4qs.jpg"
+        },
+        {
+          src: "https://wx2.sinaimg.cn/mw690/006h0M0Tgy1g3g5wkj83aj31ab1xg4qs.jpg"
+        },
+        {
+          src: "https://wx2.sinaimg.cn/mw690/006h0M0Tgy1g3g5wkj83aj31ab1xg4qs.jpg"
+        },
+        {
+          src: "https://wx2.sinaimg.cn/mw690/006h0M0Tgy1g3g5wkj83aj31ab1xg4qs.jpg"
+        },
+      ]
     }
   },
 

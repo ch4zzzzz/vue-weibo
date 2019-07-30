@@ -23,7 +23,7 @@ export function formatter (date, now=new Date()) {
   const targetMonth = target.getMonth() + 1;
   const targerDate = target.getDate();
   if (years < 1) {
-    return `${targetMonth}月${targerDate} ${targetTime}`;
+    return `${targetMonth}月${targerDate}日 ${targetTime}`;
   } else {
     return `${targetYear}年${targetMonth}月${targerDate}日 ${targetTime}`
   }

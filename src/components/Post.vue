@@ -17,7 +17,7 @@
     <section class="content">
       {{content}}
     </section>
-    <section class="photo"></section>
+    <photo-container v-if="photos" class="photo-container" :photos="photos"></photo-container>
     <footer class="footer">
       <div class="footer-button"><Icon name="like"></Icon>点赞</div>
       <div class="footer-button"><Icon name="message"></Icon>评论</div>
@@ -36,7 +36,8 @@ import { Button } from 'mint-ui';
 export default {
   name: 'Post',
   components: {
-    [Button.name]: Button
+    [Button.name]: Button,
+    'photo-container': () => import('@/components/PhotoContainer.vue')
   },
   props: {
     user: {
@@ -55,6 +56,9 @@ export default {
     content: {
       type: String,
       default: "Hello world."
+    },
+    photos: {
+      type: Array,
     }
   },
   computed: {
@@ -94,7 +98,8 @@ $header-height: 3rem;
 
 .avatar {
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
 }
 
 .post-info {
@@ -125,6 +130,7 @@ $post-text-rows: 5;
 
 .footer {
   margin-top: 0.5rem;
+  clear: both;
 
   .footer-button {
     display: inline-block;
