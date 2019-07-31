@@ -19,9 +19,9 @@
     </section>
     <photo-container v-if="post.photos" class="photo-container" :photos="post.photos"></photo-container>
     <footer class="footer">
-      <div class="footer-button"><Icon name="like"></Icon>点赞</div>
-      <div class="footer-button"><Icon name="message"></Icon>评论</div>
-      <div class="footer-button"><Icon name="share"></Icon>转发</div>
+      <div class="footer-button"><Icon name="like"></Icon>点赞{{post.like.num||""}}</div>
+      <div class="footer-button"><Icon name="message"></Icon>评论{{post.comment.num||""}}</div>
+      <div class="footer-button"><Icon name="share"></Icon>转发{{post.repost.num||""}}</div>
     </footer>
   </article>
 </template>
@@ -49,21 +49,6 @@ export default {
     post: {
       type: Object,
     },
-    // time: {
-    //   type: String,
-    //   default: () => new Date().getTime().toString()
-    // },
-    // content: {
-    //   type: String,
-    //   default: "Hello world."
-    // },
-    // photos: {
-    //   type: Array,
-    // },
-    // type: {
-    //   type: String,
-    //   default: 'normal'
-    // }
   },
   computed: {
     showedTime () {

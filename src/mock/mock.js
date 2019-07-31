@@ -5,13 +5,59 @@ Mock.mock(api.login, {
   'success': true,
 })
 
-Mock.mock(api.getPostByid, {
+// Mock.mock(api.getPostByid, {
+//   'success': true,
+//   'post': {
+
+//   }
+// })
+
+Mock.mock(api.getFollowingPosts, 'get', {
   'success': true,
-  'post': {
-    id: "123456",
-    name: '@cname',
-    username: '@string(8, 8)',
-    content: "@cparagraph(1, 3)",
-    time: String("@integer(13, 13)")
-  }
+  'posts|15-20': [{
+    content: '@cparagraph(1, 3)',
+    time: '@string("number", 12, 12)',
+    'photos|1-9': [{
+        src: "https://wx4.sinaimg.cn/large/e7bf4c79gy1g5j283epadj20fa0dh0zc.jpg"
+    }],
+    like: {
+      num: 0
+    },
+    comment: {
+      num: 0
+    },
+    repost: {
+      num: 0
+    },
+    'user': {
+      name: '@cname',
+      uid: String('@integer(8, 8)'),
+      avatar: 'https://wx2.sinaimg.cn/mw690/006h0M0Tgy1g3g5wkj83aj31ab1xg4qs.jpg'
+    }
+  }]
+})
+
+Mock.mock(api.getHotPosts, 'get', {
+  'success': true,
+  'posts|15-20': [{
+    content: '@cparagraph(1, 3)',
+    time: '@string("number", 12, 12)',
+    'photos|1-9': [{
+        src: "https://wx4.sinaimg.cn/large/e7bf4c79gy1g5j283epadj20fa0dh0zc.jpg"
+    }],
+    like: {
+      num: 0
+    },
+    comment: {
+      num: 0
+    },
+    repost: {
+      num: 0
+    },
+    'user': {
+      name: '@cname',
+      uid: String('@integer(8, 8)'),
+      avatar: 'https://wx2.sinaimg.cn/mw690/006h0M0Tgy1g3g5wkj83aj31ab1xg4qs.jpg'
+    }
+  }]
 })

@@ -6,7 +6,9 @@ const api = {
   login: 'login',
   tLogin: 'tLogin',
   getPosts: 'getPosts',
-  getPostById: 'getPostById'
+  getPostById: 'getPostById',
+  getFollowingPosts: 'getFollowingPosts',
+  getHotPosts: 'getHotPosts'
 }
 
 const keys = Object.keys(api);
@@ -19,4 +21,10 @@ export default api;
 
 // export const login = api.login;
 // export const getPosts = api.getPosts;
-export const {login, getPosts, getPostById} = api;
+export const {
+  login,
+  getPosts,
+  getPostById,
+  getFollowingPosts,
+  getHotPosts
+} = api;

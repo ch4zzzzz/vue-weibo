@@ -17,6 +17,11 @@ export default {
       required: true
     }
   },
+  mounted () {
+    this.$nextTick(() => {
+      const path = this.$route.path;
+    })
+  }
 }
 </script>
 
@@ -27,7 +32,7 @@ export default {
 
   .nav-link {
     display: inline-block;
-    font-size: 1em;
+    font-size: 1rem;
     margin-left: 0.3em;
   }
 

@@ -13,14 +13,23 @@
           />
     </div>
 
-    <div id="header-rou2">
-      <cus-nav :routers="indexRouters"></cus-nav>
+    <div id="header-row2">
+      <span v-for="item in indexComponents"
+          class="component-selector"
+          :key="item.id"
+          :class="{actived: item.component===indexComponent}"
+          @click="changeIndexComponent(item.component)">
+        {{item.name}}
+      </span>
     </div>
 
   </div>
 </template>
 
 <script>
+import { mapGetters, mapMutations } from 'vuex'
+import indexComponents from '@/pages/index/index-components.js'
+
 export default {
   name: "WeiboHeader",
   components: {
@@ -30,21 +39,18 @@ export default {
   data () {
     return {
       searchContent: "",
-      indexRouters: [
-        {
-          path: "a",
-          meta: {
-            name: "关注"
-          }
-        },
-        {
-          path: "b",
-          meta: {
-            name: "热门"
-          }
-        }
-      ]
+      indexComponents,
     }
+  },
+  computed: {
+    ...mapGetters([
+      'indexComponent'
+    ])
+  },
+  methods: {
+    ...mapMutations([
+      'changeIndexComponent'
+    ])
   }
 }
 </script>
@@ -84,6 +90,29 @@ $font-size: 1.5rem;
 
     #weibo-header-search {
       height: $line-height;
+    }
+  }
+
+  #header-row2 {
+    font-size: 1rem;
+    text-align: left;
+
+    .component-selector {
+      color: #808080;
+      margin-left: 0.5rem;
+      position: relative;
+      display: inline-block;
+    }
+    .actived:after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      transform: translate(-50%, 100%);
+      bottom: 0;
+      width: 1.5rem;
+      height: 0.2rem;
+      border-radius: 0.125rem;
+      background-color: #FF8200;
     }
   }
 
