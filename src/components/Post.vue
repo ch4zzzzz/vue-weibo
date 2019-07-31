@@ -28,12 +28,10 @@
 
 <script>
 import {formatter} from '@/util/date-formatter';
-import { Button } from 'mint-ui';
 
 export default {
   name: 'Post',
   components: {
-    [Button.name]: Button,
     'photo-container': () => import('@/components/PhotoContainer.vue')
   },
   props: {
