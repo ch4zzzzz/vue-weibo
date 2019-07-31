@@ -5,7 +5,8 @@ const baseUrl = process.env.NODE_ENV==='production'?proUrl:devUrl;
 const api = {
   login: 'login',
   tLogin: 'tLogin',
-  getPosts: 'getPosts'
+  getPosts: 'getPosts',
+  getPostById: 'getPostById'
 }
 
 const keys = Object.keys(api);
@@ -18,4 +19,4 @@ export default api;
 
 // export const login = api.login;
 // export const getPosts = api.getPosts;
-export const {login, getPosts} = api;
+export const {login, getPosts, getPostById} = api;

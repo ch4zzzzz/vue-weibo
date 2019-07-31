@@ -2,7 +2,7 @@
   <article class="post">
     <header class="header">
       <div class="avatar-container">
-        <img class="avatar" :src="user.img" alt="avatar">
+        <img class="avatar" :src="user.avatar" alt="avatar">
       </div>
       <div class="post-info">
         <span class="user-name">
@@ -15,9 +15,9 @@
       </div>
     </header>
     <section class="content">
-      {{content}}
+      {{post.content}}
     </section>
-    <photo-container v-if="photos" class="photo-container" :photos="photos"></photo-container>
+    <photo-container v-if="photos" class="photo-container" :photos="post.photos"></photo-container>
     <footer class="footer">
       <div class="footer-button"><Icon name="like"></Icon>点赞</div>
       <div class="footer-button"><Icon name="message"></Icon>评论</div>
@@ -46,24 +46,31 @@ export default {
         return {
           name: '林允儿',
           uid: '00000000',
-          img: 'https://wx2.sinaimg.cn/mw690/006h0M0Tgy1g3g5wkj83aj31ab1xg4qs.jpg'
+          avatar: 'https://wx2.sinaimg.cn/mw690/006h0M0Tgy1g3g5wkj83aj31ab1xg4qs.jpg'
       }}
     },
-    time: {
-      type: String,
-      default: () => new Date().getTime().toString()
+    post: {
+      type: Object,
     },
-    content: {
-      type: String,
-      default: "Hello world."
-    },
-    photos: {
-      type: Array,
-    }
+    // time: {
+    //   type: String,
+    //   default: () => new Date().getTime().toString()
+    // },
+    // content: {
+    //   type: String,
+    //   default: "Hello world."
+    // },
+    // photos: {
+    //   type: Array,
+    // },
+    // type: {
+    //   type: String,
+    //   default: 'normal'
+    // }
   },
   computed: {
     showedTime () {
-      return formatter(this.time);
+      return formatter(this.post.time);
     }
   }
 }

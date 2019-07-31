@@ -36,7 +36,6 @@ export default {
     }
   },
   created () {
-    console.log(this.photos)
     const photos = this.photos;
     const len = photos.length;
     if (len === 1) {
