@@ -54,6 +54,7 @@ $line-height: 100%;
   border-radius: .25rem;
   background: rgba($color: #dcdcdc, $alpha: 0.8);
   display: flex;
+  max-height: 2rem;
 
   input {
     border-style: none;

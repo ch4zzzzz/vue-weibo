@@ -2,13 +2,13 @@
   <div id="login">
     <div id="login-form">
       <h1 id="login-title">加入微博</h1>
-      <mt-field label="username" v-model="username"></mt-field>
-      <mt-field label="password" v-model="password" type="password"></mt-field>
-      <mt-button id="login-button"
-          type="primary" size="large"
+      <cus-field label="username" v-model="username"></cus-field>
+      <cus-field label="password" v-model="password" type="password"></cus-field>
+      <button id="login-button"
+          
           @click.stop="login">
         登录
-      </mt-button>
+      </button>
     </div>
   </div>
 </template>
@@ -18,6 +18,9 @@ import {login as loginUrl} from '@/request-api/api.js'
 
 export default {
   name: 'Login',
+  components: {
+    'cus-field': () => import('@/components/common/cus-field.vue')
+  },
   data () {
     return {
       username: "",
