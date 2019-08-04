@@ -16,7 +16,13 @@
     </header>
     <section class="content">
       {{post.content}}
+      <span v-if="post.hasReference">
+        <span v-for="repost in post.referenceList" :key="repost.id">//@{{repost.name}}: {{repost.content}}</span>
+      </span>
     </section>
+    <repost v-if="post.hasReference" :pid="post.referenceOrign.pid"
+        :uid="post.referenceOrign.uid"
+        :name="post.referenceOrign.name"></repost>
     <photo-container v-if="post.photos" class="photo-container" :photos="post.photos"></photo-container>
     <footer class="footer">
       <div class="footer-button"><Icon name="like"></Icon>点赞{{post.like.num||""}}</div>
@@ -32,7 +38,8 @@ import {formatter} from '@/util/date-formatter';
 export default {
   name: 'Post',
   components: {
-    'photo-container': () => import('@/components/PhotoContainer.vue')
+    'photo-container': () => import('@/components/PhotoContainer.vue'),
+    'repost': () => import('@/components/Repost.vue')
   },
   props: {
     user: {

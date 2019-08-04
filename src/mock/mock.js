@@ -33,6 +33,20 @@ Mock.mock(api.getFollowingPosts, 'get', {
       name: '@cname',
       uid: String('@integer(8, 8)'),
       avatar: 'https://wx2.sinaimg.cn/mw690/006h0M0Tgy1g3g5wkj83aj31ab1xg4qs.jpg'
+    },
+    hasReference: '@boolean',
+    referenceList: [
+      {
+        uid: "1234556",
+        name: "@cname",
+        content: '@csentence'
+      }
+    ],
+    referenceOrign: {
+      uid: "1234",
+      name: "@cname",
+      content: '@csentence',
+      pid: "1234"
     }
   }]
 })
