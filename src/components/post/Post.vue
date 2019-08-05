@@ -17,30 +17,46 @@
     <section class="content">
       {{post.content}}
       <span v-if="post.hasReference">
-        <span v-for="repost in post.referenceList" :key="repost.id">//@{{repost.name}}: {{repost.content}}</span>
+        <span v-for="repost in post.referenceList" :key="repost.id">//<a class="reference-user" href="javascript:void(0)">@{{repost.name}}</a>: {{repost.content}}</span>
       </span>
     </section>
     <repost v-if="post.hasReference" :pid="post.referenceOrign.pid"
         :uid="post.referenceOrign.uid"
         :name="post.referenceOrign.name"></repost>
     <photo-container v-if="post.photos" class="photo-container" :photos="post.photos"></photo-container>
-    <footer class="footer">
-      <div class="footer-button"><Icon name="like"></Icon>点赞{{post.like.num||""}}</div>
-      <div class="footer-button"><Icon name="message"></Icon>评论{{post.comment.num||""}}</div>
-      <div class="footer-button"><Icon name="share"></Icon>转发{{post.repost.num||""}}</div>
+    <footer class="footer" ref="footer">
+      <div class="footer-button" @click.stop="addLike"><Icon name="like"></Icon>点赞{{post.like.num||""}}</div>
+      <div class="footer-button" @click.stop="turnToComment"><Icon name="message"></Icon>评论{{post.comment.num||""}}</div>
+      <div class="footer-button" @click.stop="turnToRepost"><Icon name="share"></Icon>转发{{post.repost.num||""}}</div>
     </footer>
   </article>
 </template>
 
 <script>
 import {formatter} from '@/util/date-formatter';
+import { mapGetters } from 'vuex';
+
+const requiredAuthority = 2;
 
 export default {
   name: 'Post',
   components: {
     'photo-container': () => import('@/components/PhotoContainer.vue'),
-    'repost': () => import('@/components/Repost.vue')
+    'repost': () => import('@/components/post/Repost.vue')
   },
+
+  // hooks
+  mounted () {
+    this.$nextTick(() => {
+      if (this.authority <= requiredAuthority-1) {
+        this.$refs['footer'].addEventListener('click', this.turnToLogin, {capture: true});
+      }
+    })
+  },
+  beforeDestroy () {
+    this.$refs['footer'].removeEventListener('click', this.turnToLogin, {capture: true});
+  },
+
   props: {
     user: {
       type: Object,
@@ -58,6 +74,33 @@ export default {
   computed: {
     showedTime () {
       return formatter(this.post.time);
+    },
+    ...mapGetters([
+      'authority'
+    ])
+  },
+  watch: {
+    authority (newVal) {
+      if (newVal <= requiredAuthority-1) {
+        this.$refs['footer'].addEventListener('click', this.turnToLogin, {capture: true});
+      } else {
+        this.$refs['footer'].removeEventListener('click', this.turnToLogin, {capture: true});
+      }
+    }
+  },
+  methods: {
+    addLike () {
+
+    },
+    turnToComment () {
+
+    },
+    turnToRepost () {
+
+    },
+    turnToLogin (event) {
+      event.stopPropagation();
+      this.$router.push({name: 'login'})
     }
   }
 }
@@ -119,11 +162,16 @@ $post-text-rows: 5;
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: $post-text-rows;
-  -webkit-box-orient: vertical; 
+  -webkit-box-orient: vertical;
+
+  .reference-user {
+    text-decoration: none;
+  }
 }
 
 .footer {
   margin-top: 0.5rem;
+  float: left;
   clear: both;
 
   .footer-button {

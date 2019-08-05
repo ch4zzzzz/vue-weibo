@@ -13,7 +13,6 @@ import { mapGetters } from 'vuex'
 export default {
   name: "index",
   components: {
-    Post: () => import('@/components/Post.vue'),
     WeiboHeader: () => import('@/components/WeiboHeader.vue'),
     Following: () => import('./Following.vue'),
     Hot: () => import('./Hot.vue')

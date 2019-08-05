@@ -15,9 +15,20 @@ if (process.env.NODE_ENV !== 'production') {
   })()
 }
 
+// 访问权限控制
+router.beforeEach((to, from, next) => {
+  const {meta} = to;
+  if (meta && meta.authority) {
+    if (store.getters.authority !== meta.authority) {
+      return;
+    }
+  }
+  next();
+})
+
 // Icon
 import Icon from '@/assets/icon/Icon.vue'
-import Post from '@/components/Post.vue'
+import Post from '@/components/post/Post.vue'
 Vue.component('Icon', Icon);
 Vue.component('Post', Post)
 

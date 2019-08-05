@@ -5,9 +5,9 @@
       {{post.content}}
     </section>
     <section class="repost-footer">
+      <span v-if="post.like.num">点赞 {{post.like.num}} </span>
+      <span v-if="post.comment.num">评论 {{post.comment.num}} </span>
       <span>转发 {{post.repost.num}} </span>
-      <span>评论 {{post.comment.num}} </span>
-      <span>点赞 {{post.like.num}} </span>
     </section>
     <photo-container v-if="post.photos" class="photo-container" :photos="post.photos"></photo-container>
   </section>
@@ -58,7 +58,7 @@ export default {
 
 <style lang="scss" scoped>
 .repost {
-  background-color: rgba(#c0c0c0, 0.8);
+  background-color: rgba(#c0c0c0, 0.4);
 
   $post-text-line-height: 1.2rem;
   $post-text-rows: 5;
@@ -73,7 +73,7 @@ export default {
   }
 
   .repost-footer {
-    color: rgba(#c0c0c0, 1);
+    color: rgba(#c0c0c0, 0.8);
     font-size: 0.8em;
   }
 }

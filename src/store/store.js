@@ -6,7 +6,7 @@ const sessionStorage = createPersistedState({
   storage: window.sessionStorage,
   reducer(state) {
     return {
-      indexComponent: state.indexComponent,
+      indexComponent: state.indexComponent
     }
   }
 })
@@ -16,15 +16,22 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   plugins: [sessionStorage],
   state: {
-    indexComponent: 'Following'
+    indexComponent: 'Following',
+    authority: 1
   },
   getters: {
-    indexComponent: state => state.indexComponent
+    indexComponent: state => state.indexComponent,
+    authority: state => state.authority
   },
   mutations: {
     changeIndexComponent (state, name) {
       if (name && typeof name==='string') {
         state.indexComponent = name;
+      }
+    },
+    setAuthority (state, authority) {
+      if (authority && typeof authority === 'number') {
+        state.authority = authority;
       }
     }
   },

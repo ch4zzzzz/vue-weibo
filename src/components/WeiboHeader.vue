@@ -1,11 +1,15 @@
 <template>
   <div id="weibo-header">
     <div id="header-row1">
-      <div id="header-user-icon">
+      <div id="header-user-icon" @click.capture.stop="turnToUserHome" class="header-icon header-left-icon">
         <Icon name="user"/>
       </div>
-      <div id="header-edit-icon">
+
+      <div id="header-edit-icon" @click.capture.stop="turnToPostEditor" class="header-icon header-right-icon">
         <Icon name="edit-square"/>
+      </div>
+      <div id="header-message-icon" @click.capture.stop="turnToMessage" class="header-icon header-right-icon">
+        <Icon name="mail"></Icon>
       </div>
       <cus-field v-model="searchContent" iconName="search"
           placeholder="搜索"
@@ -30,6 +34,8 @@
 import { mapGetters, mapMutations } from 'vuex'
 import indexComponents from '@/pages/index/index-components.js'
 
+const requiredAuthority = 2;
+
 export default {
   name: "WeiboHeader",
   components: {
@@ -44,13 +50,36 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'indexComponent'
-    ])
+      'indexComponent',
+      'authority'
+    ]),
+    hasAuthority () {
+      return this.authority >= requiredAuthority ? true : false;
+    }
   },
   methods: {
     ...mapMutations([
       'changeIndexComponent'
-    ])
+    ]),
+    
+    turnToLogin () {
+      this.$router.push({name: 'login'});
+    },
+    turnToUserHome () {
+      if (!this.hasAuthority) {
+        return turnToLogin();
+      }
+    },
+    turnToPostEditor () {
+      if (!this.hasAuthority) {
+        return turnToLogin();
+      }
+    },
+    turnToMessage () {
+      if (!this.hasAuthority) {
+        return turnToLogin();
+      }
+    }
   }
 }
 </script>
@@ -74,15 +103,15 @@ $font-size: 1.5rem;
     height: $line-height;
     margin-bottom: $padding;
 
-    #header-user-icon {
+    .header-left-icon {
       float: left;
     }
 
-    #header-edit-icon {
+    .header-right-icon {
       float: right;
     }
 
-    #header-user-icon, #header-edit-icon {
+    .header-icon {
       width: $icon-container-width;
       height: $line-height;
       line-height: $line-height;
@@ -107,12 +136,12 @@ $font-size: 1.5rem;
       content: "";
       position: absolute;
       left: 50%;
-      transform: translate(-50%, 100%);
+      transform: translate(-50%, 200%);
       bottom: 0;
       width: 1.5rem;
-      height: 0.2rem;
+      height: 0.1rem;
       border-radius: 0.125rem;
-      background-color: #FF8200;
+      background-color: rgba(#000000, 0.6);
     }
   }
 

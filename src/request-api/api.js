@@ -1,5 +1,5 @@
-const proUrl = '/';
-const devUrl = '/';
+const proUrl = '/api/';
+const devUrl = '/api/';
 const baseUrl = process.env.NODE_ENV==='production'?proUrl:devUrl;
 
 const api = {
