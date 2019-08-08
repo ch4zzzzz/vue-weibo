@@ -1,14 +1,14 @@
 <template>
   <div id="weibo-header">
     <div id="header-row1">
-      <div id="header-user-icon" @click.capture.stop="turnToUserHome" class="header-icon header-left-icon">
+      <div id="header-user-icon" v-authority="authorityCheck" @click.capture.stop="turnToUserHome" class="header-icon header-left-icon">
         <Icon name="user"/>
       </div>
 
-      <div id="header-edit-icon" @click.capture.stop="turnToPostEditor" class="header-icon header-right-icon">
+      <div id="header-edit-icon" v-authority="authorityCheck" @click.capture.stop="turnToPostEditor" class="header-icon header-right-icon">
         <Icon name="edit-square"/>
       </div>
-      <div id="header-message-icon" @click.capture.stop="turnToMessage" class="header-icon header-right-icon">
+      <div id="header-message-icon" v-authority="authorityCheck" @click.capture.stop="turnToMessage" class="header-icon header-right-icon">
         <Icon name="mail"></Icon>
       </div>
       <cus-field v-model="searchContent" iconName="search"
@@ -53,8 +53,13 @@ export default {
       'indexComponent',
       'authority'
     ]),
-    hasAuthority () {
-      return this.authority >= requiredAuthority ? true : false;
+
+    authorityCheck () {
+      return {
+        requiredAuthority,
+        currentAuthority: this.authority,
+        callback: this.turnToLogin.bind(this)
+      }
     }
   },
   methods: {
@@ -63,22 +68,19 @@ export default {
     ]),
     
     turnToLogin () {
+      console.log("login")
       this.$router.push({name: 'login'});
     },
     turnToUserHome () {
-      if (!this.hasAuthority) {
-        return turnToLogin();
-      }
+      console.log("home");
+      this.$router.push({name: 'index'});
+      console.log("?")
     },
     turnToPostEditor () {
-      if (!this.hasAuthority) {
-        return turnToLogin();
-      }
+
     },
     turnToMessage () {
-      if (!this.hasAuthority) {
-        return turnToLogin();
-      }
+
     }
   }
 }

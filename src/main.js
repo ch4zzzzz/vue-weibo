@@ -26,6 +26,10 @@ router.beforeEach((to, from, next) => {
   next();
 })
 
+// 注册指令
+import {authority} from '@/directive/directive'
+Vue.directive('authority', authority);
+
 // Icon
 import Icon from '@/assets/icon/Icon.vue'
 import Post from '@/components/post/Post.vue'
