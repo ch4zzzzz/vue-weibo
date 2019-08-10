@@ -3,6 +3,11 @@ import api from '@/request-api/api'
 
 Mock.mock(api.login, {
   'success': true,
+  'user': {
+    'uid': '@string("number", 8, 8)',
+    'name': '@cname',
+    'avatar': 'https://wx2.sinaimg.cn/mw690/006h0M0Tgy1g3g5wkj83aj31ab1xg4qs.jpg'
+  }
 })
 
 // Mock.mock(api.getPostByid, {

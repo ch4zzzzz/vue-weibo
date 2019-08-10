@@ -5,7 +5,7 @@
         <Icon name="user"/>
       </div>
 
-      <div id="header-edit-icon" v-authority="authorityCheck" @click.capture.stop="turnToPostEditor" class="header-icon header-right-icon">
+      <div id="header-edit-icon" v-authority="authorityCheck" @click.capture.stop="turnToCompose" class="header-icon header-right-icon">
         <Icon name="edit-square"/>
       </div>
       <div id="header-message-icon" v-authority="authorityCheck" @click.capture.stop="turnToMessage" class="header-icon header-right-icon">
@@ -76,8 +76,8 @@ export default {
       this.$router.push({name: 'index'});
       console.log("?")
     },
-    turnToPostEditor () {
-
+    turnToCompose () {
+      this.$router.push({name: 'compose'})
     },
     turnToMessage () {
 

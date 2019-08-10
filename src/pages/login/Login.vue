@@ -15,6 +15,7 @@
 
 <script>
 import {login as loginUrl} from '@/request-api/api.js'
+import { mapActions, mapMutations } from 'vuex';
 
 export default {
   name: 'Login',
@@ -40,18 +41,29 @@ export default {
         .then(res => {
           this.handleLoginResponse(res);
         })
+        .catch(err => {
+          console.log(err)
+        })
     },
 
     handleLoginResponse (res) {
       const data = res.data;
       console.log(data);
       if (data && data.success === true) {
+        const {uid, name, avatar} = data.user;
+        this.setUser({uid, name, avatar});
+        this.setAuthority(2);
         this.$router.replace('/');
         return Promise.resolve(true);
       } else {
         return Promise.reject(false);
       }
-    }
+    },
+
+    ...mapMutations([
+      'setAuthority',
+      'setUser'
+    ])
   }
 }
 </script>

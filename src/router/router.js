@@ -6,7 +6,7 @@ Vue.use(Router);
 // pages
 import Index from '@/pages/index/Index.vue'
 import Login from '@/pages/login/Login.vue'
-
+const Compose = () => import('@/pages/compose/Compose.vue')
 /* 
 路由meta信息:
   authority: 访问权限，
@@ -28,11 +28,16 @@ const router = new Router ({
     },
     {
       name: 'login',
-      path: '/login/',
+      path: '/login',
       component: Login,
       meta: {
         authority: 1
       }
+    },
+    {
+      name: "compose",
+      path: '/compose',
+      component: Compose,
     },
     {
       path: '*',
