@@ -17,4 +17,8 @@ body {
 a {
   text-decoration: none;
 }
+
+a:focus {
+  outline: none;
+}
 </style>

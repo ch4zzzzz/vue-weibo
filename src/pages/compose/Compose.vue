@@ -14,11 +14,19 @@
           v-model="content"
           maxlength="140"
           minlength="1"></textarea>
+      <photo-container v-if="photos.length" class="photo-container" :photos="photos"
+          @delete-photo="deletePhoto"
+          @select-image="selectImages"></photo-container>
     </main>
     <footer id="compose-footer">
-      <Icon name="image" class="icon"></Icon>
-      <Icon name="video" class="icon"></Icon>
-      <Icon name="smile" class="icon"></Icon>
+      <div class="icon-container" @click="selectImages"><Icon name="image"></Icon></div>
+      <input type="file" accept="image/*"
+          multiple
+          ref="imageSelector"
+          style="display: none"
+          @change="fillImages">
+      <div class="icon-container"><Icon name="video" class="icon"></Icon></div>
+      <div class="icon-container"><Icon name="smile" class="icon"></Icon></div>
       <div id="length-counter">{{contentLength}}</div>
     </footer>
   </div>  
@@ -29,9 +37,13 @@ import { mapGetters } from 'vuex';
 
 export default {
   name: "Compose",
+  components: {
+    'photo-container': () => import('./components/ComposePhotoContainer.vue')
+  },
   data () {
     return {
-      content: ""
+      content: "",
+      photos: []
     }
   },
   computed: {
@@ -52,6 +64,27 @@ export default {
         return;
       }
       this.turnBack();
+    },
+    selectImages () {
+      this.$refs['imageSelector'].click();
+    },
+    fillImages (event) {
+      const files = Array.prototype.slice.call(event.target.files);
+      if (files.length > 9) {
+        alert(9)
+        return;
+      }
+      for (let i=0, len=files.length; i<len; i++) {
+        const file = files[i];
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = e => {
+          this.photos.push({src: reader.result});
+        }
+      }
+    },
+    deletePhoto (idx) {
+      this.photos.splice(idx, 1);
     }
   }
 }
@@ -105,18 +138,35 @@ export default {
     }
   }
 
+
+
   & > #compose-edit-area {
     // padding: $header-height+1rem;
     margin: 1rem 1rem;
     flex: 1 1 auto;
+    overflow: scroll;
+    display: flex;
+    flex-direction: column;
 
     & > #compose-textarea {
       width: 100%;
-      height: 100%;
+      flex: 1 1 auto;
       border: 0;
+      padding: 0;
       resize: none;
       font-size: 1.5rem;
       outline: none;
+    }
+
+    & > .photo-container::after {
+      content: "";
+      display: block;
+      width: 0.01%;
+      padding-bottom: 100%;
+    }
+
+    & > .photo-container {
+      flex: 0 0 auto;
     }
 
     $placeholder-color: rgba($color: #c0c0c0, $alpha: 0.6);
@@ -135,7 +185,7 @@ export default {
     line-height: $footer-height;
     font-size: $footer-height;
 
-    & > .icon {
+    & > .icon-container {
       display: inline-block;
       margin: 0 2rem 0 0.5rem;
       color: rgba($color: #808080, $alpha: 1);
