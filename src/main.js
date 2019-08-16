@@ -13,6 +13,7 @@ if (process.env.NODE_ENV !== 'production') {
   (async () => {
     const mock = await import('@/mock/mock.js');
   })()
+  axios.defaults.baseURL = '/api/'
 }
 
 // 访问权限控制

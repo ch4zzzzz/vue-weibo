@@ -34,7 +34,7 @@ export default {
       const username = this.username;
       const password = this.password;
       this.$axios
-        .post(loginUrl, {
+        .post('login', {
           username,
           password
         })

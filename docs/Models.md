@@ -15,6 +15,9 @@
     followers: [
       name: String,
       uid: String
+    ],
+    likingPost: [
+        '00000000' // pid
     ]
 }
 ```

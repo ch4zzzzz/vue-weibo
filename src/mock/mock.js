@@ -1,13 +1,14 @@
 import Mock from 'mockjs'
 import api from '@/request-api/api'
 
-Mock.mock(api.login, {
+Mock.mock('/api/login', 'post', {
   'success': true,
   'user': {
     'uid': '@string("number", 8, 8)',
     'name': '@cname',
     'avatar': 'https://wx2.sinaimg.cn/mw690/006h0M0Tgy1g3g5wkj83aj31ab1xg4qs.jpg'
-  }
+  },
+  'token': "dsafghfjhhgf"
 })
 
 // Mock.mock(api.getPostByid, {
@@ -17,9 +18,10 @@ Mock.mock(api.login, {
 //   }
 // })
 
-Mock.mock('following-posts', 'get', {
+Mock.mock('/api/following-posts', 'get', {
   'success': true,
   'posts|15-20': [{
+    pid: '@string("number", 8, 8)',
     content: '@cparagraph(1, 3)',
     time: '@string("number", 12, 12)',
     'photos|1-9': [{
@@ -56,7 +58,7 @@ Mock.mock('following-posts', 'get', {
   }]
 })
 
-Mock.mock('hot-posts', 'get', {
+Mock.mock('/api/hot-posts', 'get', {
   'success': true,
   'posts|15-20': [{
     content: '@cparagraph(1, 3)',
@@ -81,6 +83,12 @@ Mock.mock('hot-posts', 'get', {
   }]
 })
 
-Mock.mock('post', 'post', {
+// 发布新微博
+Mock.mock('/api/post', 'post', {
+  'success': true
+})
+
+// 点赞
+Mock.mock('/api/likingPost', 'post', {
   'success': true
 })

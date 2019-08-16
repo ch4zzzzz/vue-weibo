@@ -25,9 +25,15 @@
         :name="post.referenceOrign.name"></repost>
     <photo-container v-if="post.photos" class="photo-container" :photos="post.photos"></photo-container>
     <footer class="footer" ref="footer" v-authority="authorityCheck">
-      <div class="footer-button" @click.stop="addLike"><Icon name="like"></Icon>点赞{{post.like.num||""}}</div>
-      <div class="footer-button" @click.stop="turnToComment"><Icon name="message"></Icon>评论{{post.comment.num||""}}</div>
-      <div class="footer-button" @click.stop="turnToRepost"><Icon name="share"></Icon>转发{{post.repost.num||""}}</div>
+      <div class="footer-button" @click.stop="addLike">
+        <div class="button-icon"><Icon name="like" :style="likeIconColor"></Icon></div><span class="button-description">{{post.like.num||"点赞"}}</span>
+      </div>
+      <div class="footer-button" @click.stop="turnToComment">
+        <div class="button-icon"><Icon name="message"></Icon></div><span class="button-description">{{post.comment.num||"评论"}}</span>
+      </div>
+      <div class="footer-button" @click.stop="turnToRepost">
+        <div class="button-icon"><Icon name="share"></Icon></div><span class="button-description">{{post.repost.num||"转发"}}</span>
+      </div>
     </footer>
   </article>
 </template>
@@ -44,7 +50,13 @@ export default {
     'photo-container': () => import('@/components/PhotoContainer.vue'),
     'repost': () => import('@/components/post/Repost.vue')
   },
-
+  data () {
+    return {
+      likeIconColor: {
+        color: "black",
+      }
+    }
+  },
   props: {
     user: {
       type: Object,
@@ -76,7 +88,19 @@ export default {
   },
   methods: {
     addLike () {
+      console.log("like")
+      this.$axios
+        .post('likingPost', {
+          'pid': this.post.pid
+        })
+        .then(res => {
+          this.likeIconColor['color'] = 'red';
+          this.post.like.num++;
+        })
+        .catch(err => {
 
+        })
+      
     },
     turnToComment () {
 
@@ -163,7 +187,17 @@ $post-text-rows: 5;
 
   .footer-button {
     display: inline-block;
-    margin-right: 1.5rem;
+    width: 4rem;
+    position: relative;
+    font-size: 1rem;
+
+    .button-icon {
+      position: absolute;
+    }
+
+    .button-description {
+      margin-left: 1.5rem
+    }
   }
 }
 
