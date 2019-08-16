@@ -8,7 +8,7 @@
       <div id="header-edit-icon" v-authority="authorityCheck" @click.capture.stop="turnToCompose" class="header-icon header-right-icon">
         <Icon name="edit-square"/>
       </div>
-      <div id="header-message-icon" v-authority="authorityCheck" @click.capture.stop="turnToMessage" class="header-icon header-right-icon">
+      <div id="header-message-icon" v-authority="authorityCheck" @click.capture.stop="turnToMessages" class="header-icon header-right-icon">
         <Icon name="mail"></Icon>
       </div>
       <cus-field v-model="searchContent" iconName="search"
@@ -79,8 +79,8 @@ export default {
     turnToCompose () {
       this.$router.push({name: 'compose'})
     },
-    turnToMessage () {
-
+    turnToMessages () {
+      this.$router.push({name: 'message-view'})
     }
   }
 }

@@ -5,8 +5,9 @@ Vue.use(Router);
 
 // pages
 import Index from '@/pages/index/Index.vue'
-import Login from '@/pages/login/Login.vue'
+const Login = () => import('@/pages/login/Login.vue')
 const Compose = () => import('@/pages/compose/Compose.vue')
+const MessageView = () => import('@/pages/message-view/MessageView.vue')
 /* 
 路由meta信息:
   authority: 访问权限，
@@ -38,6 +39,11 @@ const router = new Router ({
       name: "compose",
       path: '/compose',
       component: Compose,
+    },
+    {
+      name: "message-view",
+      path: 'messages',
+      component: MessageView
     },
     {
       path: '*',

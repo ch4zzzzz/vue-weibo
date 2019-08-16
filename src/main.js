@@ -34,7 +34,7 @@ Vue.directive('authority', authority);
 import Icon from '@/assets/icon/Icon.vue'
 import Post from '@/components/post/Post.vue'
 Vue.component('Icon', Icon);
-Vue.component('Post', Post)
+Vue.component('Post', Post);
 
 new Vue({
   router,
