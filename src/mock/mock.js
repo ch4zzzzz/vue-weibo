@@ -17,7 +17,7 @@ Mock.mock(api.login, {
 //   }
 // })
 
-Mock.mock(api.getFollowingPosts, 'get', {
+Mock.mock('following-posts', 'get', {
   'success': true,
   'posts|15-20': [{
     content: '@cparagraph(1, 3)',
@@ -56,7 +56,7 @@ Mock.mock(api.getFollowingPosts, 'get', {
   }]
 })
 
-Mock.mock(api.getHotPosts, 'get', {
+Mock.mock('hot-posts', 'get', {
   'success': true,
   'posts|15-20': [{
     content: '@cparagraph(1, 3)',
@@ -79,4 +79,8 @@ Mock.mock(api.getHotPosts, 'get', {
       avatar: 'https://wx2.sinaimg.cn/mw690/006h0M0Tgy1g3g5wkj83aj31ab1xg4qs.jpg'
     }
   }]
+})
+
+Mock.mock('post', 'post', {
+  'success': true
 })

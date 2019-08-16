@@ -20,12 +20,13 @@ export default {
   methods: {
     getPosts () {
       this.$axios
-        .get(getFollowingPosts)
+        .get('following-posts')
         .then(res => {
           const data = res.data;
-          if (data.success) {
-            this.posts = data.posts;
-          }
+          this.posts = data.posts;
+        })
+        .catch(err => {
+          
         })
     }
   }

@@ -1,12 +1,12 @@
 <template>
   <div id="compose">
     <header id="compose-header">
-      <div id="compose-back"><a href="javascript:void(0)" @click="turnBack"><Icon name="left"></Icon></a></div>
+      <div id="compose-back"><a href="#" @click.prevent="turnBack"><Icon name="left"></Icon></a></div>
       <div id="compose-avatar-container">
         <img :src="user.avatar" alt="">
       </div>
-      <div id="compose-send"><a href="javascript:void(0)" 
-          @click="publish">发送</a></div>
+      <div id="compose-send"><a href="#" 
+          @click.prevent="publish">发送</a></div>
     </header>
     <main id="compose-edit-area">
       <textarea name="" id="compose-textarea"
@@ -43,7 +43,8 @@ export default {
   data () {
     return {
       content: "",
-      photos: []
+      photos: [],
+      photoFiles: [],
     }
   },
   computed: {
@@ -63,6 +64,25 @@ export default {
       if (!content.length) {
         return;
       }
+      const formData = new FormData();
+      formData.append('uid', this.user.uid);
+      formData.append('content', this.content);
+      formData.append('time', JSON.stringify(Date.now()));
+      if (this.photoFiles.length > 0) {
+        formData.append('photos[]', this.photoFiles)
+      }
+      this.$axios
+        .post('post', {
+          uid: this.user.uid,
+          content: this.content,
+          time: JSON.stringify(Date.now()),
+        })
+        .then(res => {
+          
+        })
+        .catch(err => {
+          
+        })
       this.turnBack();
     },
     selectImages () {
@@ -70,6 +90,7 @@ export default {
     },
     fillImages (event) {
       const files = Array.prototype.slice.call(event.target.files);
+      this.photoFiles.push(...files);
       if (files.length > 9) {
         alert(9)
         return;

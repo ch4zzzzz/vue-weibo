@@ -5,7 +5,7 @@ const baseUrl = process.env.NODE_ENV==='production'?proUrl:devUrl;
 const api = {
   login: 'login',
   tLogin: 'tLogin',
-  getPosts: 'getPosts',
+  getPosts: 'following-posts',
   getPostById: 'getPostById',
   getFollowingPosts: 'getFollowingPosts',
   getHotPosts: 'getHotPosts'

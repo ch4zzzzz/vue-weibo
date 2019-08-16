@@ -20,12 +20,13 @@ export default {
   methods: {
     getPosts () {
       this.$axios
-        .get(getHotPosts)
+        .get('hot-posts')
         .then(res => {
           const data = res.data;
-          if (data.success) {
-            this.posts = data.posts;
-          }
+          this.posts = data.posts;
+        })
+        .catch(err => {
+          
         })
     }
   }
