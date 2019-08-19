@@ -16,7 +16,7 @@
       name: String,
       uid: String
     ],
-    likingPost: [
+    likingPosts: [
         '00000000' // pid
     ]
 }

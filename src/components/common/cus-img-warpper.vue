@@ -1,7 +1,7 @@
 <template>
-  <div :style="warpperStyle">
+  <div>
     <div :style="innerWarpperStyle" class="inner-warpper">
-      <img class="img" :src="src" :alt="alt">
+      <img :style="imgStyle" class="img" :src="src" :alt="alt">
     </div>
   </div>
 </template>
@@ -12,29 +12,26 @@
 export default {
   name: "cus-img-warpper",
   created () {
-    this.warpperStyle['width'] = this.width;
     let aspectRatio = this.aspectRatio;
     if (isNaN(aspectRatio)) {
       aspectRatio = 1;
     }
     this.innerWarpperStyle['padding-bottom'] = 100/aspectRatio + '%';
+
+    if (this.shape === 'circle') {
+      this.imgStyle['border-radius'] = "50%";
+    }
   },
   data () {
     return {
-      warpperStyle: {
-        width: "1em"
-      },
       innerWarpperStyle: {
         width: "100%",
         "padding-bottom": "100%"
-      }
+      },
+      imgStyle: {}
     }
   },
   props: {
-    width: {
-      type: String,
-      default: "1em"
-    },
     aspectRatio: {
       type: String,
       default: '1'
@@ -46,6 +43,10 @@ export default {
     alt: {
       type: String,
       default: "image"
+    },
+    shape: {
+      type: String,
+      default: "circle"
     }
   }
 }

@@ -3,13 +3,56 @@
     <header id="message-view-header">
       消息箱
     </header>
+
+    <Message :sender="basicSenders[0]" type="icon">
+      <template #icon>
+        <div style="width: 100%; height: 100%; background: #6495ed; border-radius: 50%">
+          <span style="line-height: 100%;">@</span>
+        </div>
+      </template>
+    </Message>
+    <Message :sender="basicSenders[1]" type="icon">
+      <template #icon>
+        <div style="width: 100%; height: 100%; background: #7fff00; border-radius: 50%">
+          <Icon :name="basicSenders[1].icon"></Icon>
+        </div>
+      </template>
+    </Message>
+    <Message :sender="basicSenders[2]" type="icon">
+      <template #icon>
+        <div style="width: 100%; height: 100%; background: #ff7f50; border-radius: 50%">
+          <Icon :name="basicSenders[2].icon"></Icon>
+        </div>
+      </template>
+    </Message>
   </div>
 </template>
 
 <script>
+import Message from './components/Message'
+
 export default {
   name: "MessageView",
-
+  components: {
+    Message
+  },
+  data () {
+    return {
+      basicSenders: [
+        {
+          name: "@我的",
+        },
+        {
+          name: "评论",
+          icon: "message"
+        },
+        {
+          name: "赞",
+          icon: "like"
+        }
+      ]
+    }
+  }
 }
 </script>
 
