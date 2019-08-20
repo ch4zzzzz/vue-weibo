@@ -28,8 +28,10 @@ router.beforeEach((to, from, next) => {
 })
 
 // 注册指令
-import {authority} from '@/directive/directive'
+import {authority} from '@/directive/authority'
+import {lazyLoadDirective} from '@/directive/lazy-load'
 Vue.directive('authority', authority);
+Vue.directive('lazy-load', lazyLoadDirective)
 
 // Icon
 import Icon from '@/assets/icon/Icon.vue'

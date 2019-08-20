@@ -2,7 +2,7 @@
   <div id="index">
     <WeiboHeader></WeiboHeader>
     <keep-alive>
-      <component :is="indexComponent"></component>
+      <component :is="indexComponent" v-lazy-load></component>
     </keep-alive>
   </div>
 </template>

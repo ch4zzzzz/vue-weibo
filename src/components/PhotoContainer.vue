@@ -2,7 +2,7 @@
   <section class="photo-container">
     <div class="warpper" :style="warpperWidthStyle" v-for="photo in showedPhotos" :key="photo.id">
       <div class="img-warpper">
-        <img :src="photo.src" alt="photo" @error="onImgLoadError">
+        <img class="lazy-load-img" :src="defaultImgSrc" :data-src="photo.src" alt="photo" @error="onImgLoadError">
       </div>
     </div>
   </section>
@@ -16,7 +16,8 @@ export default {
       warpperWidthStyle: {
         width: '33.33%'
       },
-      errorImg: 'https://wx2.sinaimg.cn/mw690/006h0M0Tgy1g3g5wkj83aj31ab1xg4qs.jpg'
+      errorImg: 'data:image/gif;base64,R0lGODlhAQABAGAAACH5BAEKAP8ALAAAAAABAAEAAAgEAP8FBAA7',
+      defaultImgSrc: 'data:image/gif;base64,R0lGODlhAQABAGAAACH5BAEKAP8ALAAAAAABAAEAAAgEAP8FBAA7'
     }
   },
   computed : {

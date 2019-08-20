@@ -2,7 +2,7 @@
   <article class="post">
     <header class="header">
       <div class="avatar-container">
-        <img class="avatar" :src="user.avatar" alt="avatar">
+        <img class="avatar lazy-load-img" :src="defaultImgSrc" :data-src="user.avatar" alt="avatar">
       </div>
       <div class="post-info">
         <span class="user-name">
@@ -54,7 +54,8 @@ export default {
     return {
       likeIconColor: {
         color: "black",
-      }
+      },
+      defaultImgSrc: "data:image/gif;base64,R0lGODlhAQABAGAAACH5BAEKAP8ALAAAAAABAAEAAAgEAP8FBAA7"
     }
   },
   props: {
