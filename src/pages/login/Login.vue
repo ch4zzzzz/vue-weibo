@@ -47,12 +47,13 @@ export default {
     },
 
     handleLoginResponse (res) {
-      const data = res.data;
-      console.log(data);
-      if (data && data.success === true) {
+      if (res.status === 200) {
+        const data = res.data;
         const {uid, name, avatar} = data.user;
         this.setUser({uid, name, avatar});
         this.setAuthority(2);
+        const {token} = data;
+        this.setUserToken(token);
         this.$router.replace('/');
         return Promise.resolve(true);
       } else {
@@ -62,7 +63,8 @@ export default {
 
     ...mapMutations([
       'setAuthority',
-      'setUser'
+      'setUser',
+      'setUserToken'
     ])
   }
 }

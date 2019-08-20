@@ -88,7 +88,6 @@ export default {
   },
   methods: {
     addLike () {
-      console.log("like")
       this.$axios
         .post('likingPost', {
           'pid': this.post.pid
@@ -109,7 +108,6 @@ export default {
 
     },
     turnToLogin (event) {
-      console.log("click")
       event.stopPropagation();
       this.$router.push({name: 'login'})
     }

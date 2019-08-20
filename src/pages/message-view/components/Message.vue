@@ -3,7 +3,8 @@
     <div v-if="type==='icon'" class="icon-box left-item">
       <slot name="icon"></slot>
     </div>
-    <img-warpper v-else class="img-warpper left-item" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="></img-warpper>
+    <img-warpper v-else class="img-warpper left-item" :src="avatar"
+        @error="resetAvatar"></img-warpper>
     <div class="message-box">
       <div class="sender-name">
         {{sender.name}}
@@ -19,17 +20,18 @@
 export default {
   name: "message",
   created() {
-    // this.$axios
-    //   .get('message')
-    //   .then(res => {
-    //     const data = res.data;
-    //   })
-    //   .catch(err => {
-        
-    //   })
+    const sender = this.sender;
+    if (sender.avatar) {
+      this.avatar = sender.avatar;
+    }
   },
   components: {
     'img-warpper': () => import('@/components/common/cus-img-warpper')
+  },
+  data () {
+    return {
+      avatar: "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+    }
   },
   props: {
     sender: {
@@ -40,6 +42,11 @@ export default {
       type: String
     }
   },
+  methods: {
+    resetAvatar () {
+      this.avatar = "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==";
+    }
+  }
 }
 </script>
 

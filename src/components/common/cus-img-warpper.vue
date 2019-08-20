@@ -1,7 +1,7 @@
 <template>
   <div>
     <div :style="innerWarpperStyle" class="inner-warpper">
-      <img :style="imgStyle" class="img" :src="src" :alt="alt">
+      <img :style="imgStyle" class="img" :src="src" :alt="alt" @error="emitError">
     </div>
   </div>
 </template>
@@ -47,6 +47,11 @@ export default {
     shape: {
       type: String,
       default: "circle"
+    }
+  },
+  methods: {
+    emitError () {
+      this.$emit('error');
     }
   }
 }

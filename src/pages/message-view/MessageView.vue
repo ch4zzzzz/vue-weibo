@@ -1,6 +1,9 @@
 <template>
-  <div id="message-view">
+  <div id="message-view" @click="turnBack">
     <header id="message-view-header">
+      <div class="icon-box">
+        <Icon name="left"></Icon>
+      </div>
       消息箱
     </header>
 
@@ -25,6 +28,7 @@
         </div>
       </template>
     </Message>
+    <Message :sender="{name: '0', avatar:'xxxx'}"></Message>
   </div>
 </template>
 
@@ -52,6 +56,11 @@ export default {
         }
       ]
     }
+  },
+  methods: {
+    turnBack () {
+      this.$router.go(-1);
+    }
   }
 }
 </script>
@@ -65,5 +74,13 @@ $header-line-height: 2.5rem;
   line-height: $header-line-height;
   font-size: 1.2rem;
   background: rgba($color: #dcdcdc, $alpha: 0.4);
+  position: relative;
+}
+
+.icon-box {
+  padding-left: 0.5rem;
+  left: 0;
+  height: 100%;
+  position: absolute;
 }
 </style>

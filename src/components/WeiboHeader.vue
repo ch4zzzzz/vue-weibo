@@ -10,6 +10,7 @@
       </div>
       <div id="header-message-icon" v-authority="authorityCheck" @click.capture.stop="turnToMessages" class="header-icon header-right-icon">
         <Icon name="mail"></Icon>
+        <div id="messages-num">1</div>
       </div>
       <cus-field v-model="searchContent" iconName="search"
           placeholder="搜索"
@@ -94,11 +95,13 @@ $font-size: 1.5rem;
   background: rgba($color: #dcdcdc, $alpha: 0.4);
   font-size: $font-size;
   text-align: center;
-  $icon-container-width: $font-size + 1rem;
+  $icon-container-width: $font-size;
   clear: both;
   $padding: 0.5rem;
   padding-top: $padding;
   padding-bottom: $padding;
+
+  $item-distance: 0.5rem;
 
   #header-row1 {
     width: 100%;
@@ -117,6 +120,8 @@ $font-size: 1.5rem;
       width: $icon-container-width;
       height: $line-height;
       line-height: $line-height;
+      margin-left: $item-distance;
+      margin-right: $item-distance;
     }
 
     #weibo-header-search {
@@ -149,6 +154,25 @@ $font-size: 1.5rem;
 
 }
 
+#header-message-icon {
+  position: relative;
+}
 
+#messages-num {
+  $font-size: 0.75rem;
+  font-size: $font-size;
+  $height: $font-size+0.25rem;
+  line-height: $height;
+  height: $height;
+  width: $height;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transform: translate(50%, 0);
+  box-sizing: content-box;
+  border-radius: 50%;
+  background: red;
+  color: white;
+}
 </style>
 

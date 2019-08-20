@@ -2,6 +2,45 @@
     <router-view/>
 </template>
 
+<script>
+import { mapMutations, mapGetters } from 'vuex';
+export default {
+  // created () {
+  //   if (this.authority > 1) {
+  //     const token = this.userToken;
+  //     if (token.length > 0) {
+  //     }
+  //   }
+
+  // },
+  data () {
+    return {
+      worker: null
+    }
+  },
+  computed: {
+    ...mapGetters([
+      'userToken',
+      'authority'
+    ])
+  },
+  // watch: {
+  //   authority (val) {
+  //     if (val > 1) {
+  //       const token = this.userToken;
+
+  //     }
+  //   }
+  // },
+  methods: {
+    ...mapMutations([
+      'pushMessage'
+    ]),
+    
+  }
+}
+</script>
+
 <style>
 html {
   height: 100%;

@@ -92,3 +92,25 @@ Mock.mock('/api/post', 'post', {
 Mock.mock('/api/likingPost', 'post', {
   'success': true
 })
+
+Mock.mock('/api/messages', 'get', {
+  'messageSet': [
+    {
+      'sender': {
+        'uid': '12345678',
+        'name': 'default_sender'
+      },
+      'messages': [
+        {
+          content: "我来了",
+          time: "1566216347709"
+        },
+        {
+          content: "走了",
+          time: "1566216747709"
+        }
+      ]
+    }
+  ]
+
+})

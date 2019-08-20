@@ -7,7 +7,17 @@ const sessionStorage = createPersistedState({
   reducer(state) {
     return {
       indexComponent: state.indexComponent,
-      user: state.user
+      user: state.user,
+      messages: state.messages
+    }
+  }
+})
+
+const localStorage = createPersistedState({
+  storage: window.localStorage,
+  reducer (state) {
+    return {
+      userToken: state.userToken
     }
   }
 })
@@ -15,16 +25,22 @@ const sessionStorage = createPersistedState({
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-  plugins: [sessionStorage],
+  plugins: [sessionStorage, localStorage],
   state: {
     indexComponent: 'Following',
     authority: 1,
-    user: null
+    user: null,
+    userToken: "",
+    messages: [],
+    messagePollingInterval: 30000
   },
   getters: {
     indexComponent: state => state.indexComponent,
     authority: state => state.authority,
-    user: state => state.user
+    user: state => state.user,
+    userToken: state => state.userToken,
+    messages: state => state.messages,
+    messagePollingInterval: state => state.messagePollingInterval
   },
   mutations: {
     changeIndexComponent (state, name) {
@@ -39,6 +55,19 @@ export default new Vuex.Store({
     },
     setUser (state, user) {
       state.user = user;
+    },
+    setUserToken (state, token) {
+      state.userToken = token;
+    },
+    pushMessage (state, message) {
+      state.messages.push(message);
+    },
+    setMessagePollingInterval (state, interval) {
+      const num = parseInt(interval);
+      if (isNaN(num)) {
+        return;
+      }
+      state.messagePollingInterval = interval;
     }
   },
   actions: {
