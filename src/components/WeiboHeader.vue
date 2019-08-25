@@ -1,14 +1,14 @@
 <template>
   <div id="weibo-header">
     <div id="header-row1">
-      <div id="header-user-icon" v-authority="authorityCheck" @click.capture.stop="turnToUserHome" class="header-icon header-left-icon">
+      <div id="header-user-icon" v-authority="authorityCheck" @touchstart.capture.stop="turnToUserHome" class="header-icon header-left-icon">
         <Icon name="user"/>
       </div>
 
-      <div id="header-edit-icon" v-authority="authorityCheck" @click.capture.stop="turnToCompose" class="header-icon header-right-icon">
+      <div id="header-edit-icon" v-authority="authorityCheck" @touchstart.capture.stop="turnToCompose" class="header-icon header-right-icon">
         <Icon name="edit-square"/>
       </div>
-      <div id="header-message-icon" v-authority="authorityCheck" @click.capture.stop="turnToMessages" class="header-icon header-right-icon">
+      <div id="header-message-icon" v-authority="authorityCheck" @touchstart.capture.stop="turnToMessages" class="header-icon header-right-icon">
         <Icon name="mail"></Icon>
         <div id="messages-num">1</div>
       </div>
@@ -23,7 +23,7 @@
           class="component-selector"
           :key="item.id"
           :class="{actived: item.component===indexComponent}"
-          @click="changeIndexComponent(item.component)">
+          @touchstart="changeIndexComponent(item.component)">
         {{item.name}}
       </span>
     </div>

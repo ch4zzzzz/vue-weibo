@@ -6,7 +6,7 @@
       <cus-field label="password" v-model="password" type="password"></cus-field>
       <button id="login-button"
           
-          @click.stop="login">
+          @touchstart.stop="login">
         登录
       </button>
     </div>

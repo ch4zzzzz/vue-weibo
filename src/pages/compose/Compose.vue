@@ -1,12 +1,12 @@
 <template>
   <div id="compose">
     <header id="compose-header">
-      <div id="compose-back"><a href="#" @click.prevent="turnBack"><Icon name="left"></Icon></a></div>
+      <div id="compose-back"><a href="#" @touchstart.prevent="turnBack"><Icon name="left"></Icon></a></div>
       <div id="compose-avatar-container">
         <img :src="user.avatar" alt="">
       </div>
       <div id="compose-send"><a href="#" 
-          @click.prevent="publish">发送</a></div>
+          @touchstart.prevent="publish">发送</a></div>
     </header>
     <main id="compose-edit-area">
       <textarea name="" id="compose-textarea"
@@ -19,7 +19,7 @@
           @select-image="selectImages"></photo-container>
     </main>
     <footer id="compose-footer">
-      <div class="icon-container" @click="selectImages"><Icon name="image"></Icon></div>
+      <div class="icon-container" @touchstart="selectImages"><Icon name="image"></Icon></div>
       <input type="file" accept="image/*"
           multiple
           ref="imageSelector"
@@ -86,7 +86,7 @@ export default {
       this.turnBack();
     },
     selectImages () {
-      this.$refs['imageSelector'].click();
+      this.$refs['imageSelector'].touchstart();
     },
     fillImages (event) {
       const files = Array.prototype.slice.call(event.target.files);

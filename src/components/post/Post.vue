@@ -25,13 +25,13 @@
         :name="post.referenceOrign.name"></repost>
     <photo-container v-if="post.photos" class="photo-container" :photos="post.photos"></photo-container>
     <footer class="footer" ref="footer" v-authority="authorityCheck">
-      <div class="footer-button" @click.stop="addLike">
+      <div class="footer-button" @touchstart.stop="addLike">
         <div class="button-icon"><Icon name="like" :style="likeIconColor"></Icon></div><span class="button-description">{{post.like.num||"点赞"}}</span>
       </div>
-      <div class="footer-button" @click.stop="turnToComment">
+      <div class="footer-button" @touchstart.stop="turnToComment">
         <div class="button-icon"><Icon name="message"></Icon></div><span class="button-description">{{post.comment.num||"评论"}}</span>
       </div>
-      <div class="footer-button" @click.stop="turnToRepost">
+      <div class="footer-button" @touchstart.stop="turnToRepost">
         <div class="button-icon"><Icon name="share"></Icon></div><span class="button-description">{{post.repost.num||"转发"}}</span>
       </div>
     </footer>

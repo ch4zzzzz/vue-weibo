@@ -5,10 +5,10 @@
         <img :src="photo.src" alt="photo" @error="onImgLoadError">
       </div>
       <div  v-if="photos.length>1" class="delete-icon"
-          @click="deletePhoto(photo)"><Icon name="close"></Icon></div>
+          @touchstart="deletePhoto(photo)"><Icon name="close"></Icon></div>
     </div>
     <div class="warpper add-warpper" v-if="photos.length > 1 && photos.length < 9"
-        @click="addPhoto">
+        @touchstart="addPhoto">
       <div class="img-warpper">
         <Icon class="add-icon" name="plus"></Icon>
       </div>

@@ -1,5 +1,5 @@
 <template>
-  <div id="message-view" @click="turnBack">
+  <div id="message-view" @touchstart="turnBack">
     <header id="message-view-header">
       <div class="icon-box">
         <Icon name="left"></Icon>

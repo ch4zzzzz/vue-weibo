@@ -5,7 +5,7 @@ const lazyLoadDirective = {
     vnode.$lazyLoader = new LazyLoader(el);
   },
   update (el, binding, vnode) {
-    // lazyLoader ? 1 : lazyLoader = new LazyLoader(el);
+    vnode.$lazyLoader.reset();
   },
   unbind (el, binding, vnode) {
     vnode.$lazyLoader.destory();

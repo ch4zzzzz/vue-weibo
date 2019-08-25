@@ -3,20 +3,20 @@ const authority = {
   bind: function(el, binding, vnode) {
     const {requiredAuthority, currentAuthority, callback} = binding.value;
     if (requiredAuthority > currentAuthority) {
-      el.addEventListener('click', callback, {capture: true});
+      el.addEventListener('touchstart', callback, {capture: true});
     }
   },
   update: function(el, binding, vnode) {
     const {requiredAuthority, currentAuthority, callback} = binding.value;
     if (requiredAuthority > currentAuthority) {
-      el.addEventListener('click', callback, {capture: true});
+      el.addEventListener('touchstart', callback, {capture: true});
     } else {
-      el.removeEventListener('click', callback, {capture: true});
+      el.removeEventListener('touchstart', callback, {capture: true});
     }
   },
   unbind: function(el, binding, vnode) {
     const {callback} = binding.value;
-    el.removeEventListener('click', callback, {capture: true});
+    el.removeEventListener('touchstart', callback, {capture: true});
   },
 }
 

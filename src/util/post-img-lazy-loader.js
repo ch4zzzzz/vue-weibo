@@ -49,7 +49,7 @@ class HTML5LazyLoader {
       const img = imgs[i];
       const src = img.getAttribute('data-src');
       if (src === img.getAttribute('src')) {
-        return;
+        continue;
       }
       img.setAttribute('src', src);
     }
@@ -61,6 +61,10 @@ class HTML5LazyLoader {
       this.intersectionObserver = null;
       this.element = null;
     }
+  }
+
+  reset () {
+    this.init();
   }
 }
 
@@ -127,7 +131,7 @@ class StandardLazyLoader {
       const img = imgs[i];
       const src = img.getAttribute('data-src');
       if (src === img.getAttribute('src')) {
-        return;
+        continue;
       }
       img.setAttribute('src', src);
     }
@@ -136,6 +140,10 @@ class StandardLazyLoader {
   destory () {
     window.removeEventListener('scroll', this.elementLazyLoader, false);
     this.element = null;
+  }
+
+  reset () {
+    this.init();
   }
 }
 
